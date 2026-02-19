@@ -41,7 +41,7 @@
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     pointer-events: none;
-    z-index: 1000;
+    z-index: -1;
     opacity: 0.35;
   }
 
@@ -414,9 +414,11 @@
     background: linear-gradient(135deg, rgba(124,58,237,0.05), transparent 60%);
     opacity: 0;
     transition: opacity 0.4s;
+    pointer-events: none;
   }
   .project-card:hover { border-color: rgba(124,58,237,0.4); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
   .project-card:hover::before { opacity: 1; }
+  .project-card * { position: relative; z-index: 1; }
 
   .project-num {
     font-family: 'Clash Display', 'Cabinet Grotesk', sans-serif;
@@ -432,9 +434,22 @@
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--white);
-    margin-bottom: 1rem;
+    margin-bottom: 0.4rem;
     letter-spacing: -0.02em;
   }
+  .project-url {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.68rem;
+    color: rgba(157, 96, 255, 0.6);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    word-break: break-all;
+  }
+  .project-url:hover { color: var(--purple-bright); }
+  .project-url svg { width: 11px; height: 11px; flex-shrink: 0; }
   .project-desc { font-size: 0.9375rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
   .project-tech { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem; }
   .tech-pill {
@@ -446,15 +461,18 @@
     border: 1px solid rgba(124,58,237,0.3);
   }
   .project-link {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.7rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.72rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--white);
+    background: rgba(124,58,237,0.18);
+    border: 1px solid rgba(124,58,237,0.35);
+    padding: 0.55rem 1.2rem;
     text-decoration: none;
-    transition: gap 0.2s, color 0.2s;
+    transition: background 0.25s, border-color 0.25s, gap 0.2s, box-shadow 0.25s;
   }
-  .project-link:hover { gap: 0.8rem; color: var(--white); }
+  .project-link:hover { background: rgba(124,58,237,0.32); border-color: var(--purple-bright); gap: 0.9rem; box-shadow: 0 0 18px rgba(124,58,237,0.25); }
   .project-link svg { width: 14px; height: 14px; }
 
   .project-accent-line {
@@ -710,6 +728,10 @@
       <div class="project-accent-line"></div>
       <div class="project-num">// 01 — Featured</div>
       <div class="project-title">chrono-zig</div>
+      <a href="https://github.com/nandisomnath/chrono-zig" target="_blank" class="project-url">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/nandisomnath/chrono-zig
+      </a>
       <p class="project-desc">A full-featured date and time library for the Zig programming language — a port of Rust's battle-tested Chrono crate. Supports timezone-aware DateTimes, strftime-inspired formatting, DST handling, and IANA timezone data via a companion package. Listed on Zigistry, the official Zig package registry.</p>
       <div class="project-tech">
         <span class="tech-pill">Zig</span>
@@ -726,6 +748,10 @@
       <div class="project-accent-line"></div>
       <div class="project-num">// 02</div>
       <div class="project-title">zig-pkg-index</div>
+      <a href="https://github.com/nandisomnath/zig-pkg-index" target="_blank" class="project-url">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/nandisomnath/zig-pkg-index
+      </a>
       <p class="project-desc">A clean, beautiful package index web UI for the Zig ecosystem. Helps developers discover, browse, and explore Zig packages in a well-designed interface — filling a gap in the young but fast-growing Zig tooling landscape.</p>
       <div class="project-tech">
         <span class="tech-pill">HTML</span>
@@ -741,6 +767,10 @@
       <div class="project-accent-line"></div>
       <div class="project-num">// 03</div>
       <div class="project-title">book-finder</div>
+      <a href="https://github.com/nandisomnath/book-finder" target="_blank" class="project-url">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/nandisomnath/book-finder
+      </a>
       <p class="project-desc">A JavaScript library and tool that searches the internet for books by title, author, or ISBN. A practical utility for readers and developers that wraps various book APIs into a simple, unified interface.</p>
       <div class="project-tech">
         <span class="tech-pill">JavaScript</span>
@@ -756,6 +786,10 @@
       <div class="project-accent-line"></div>
       <div class="project-num">// 04</div>
       <div class="project-title">LeetCode Solutions</div>
+      <a href="https://github.com/nandisomnath/leet_code" target="_blank" class="project-url">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/nandisomnath/leet_code
+      </a>
       <p class="project-desc">A carefully curated collection of LeetCode problem solutions covering Data Structures, Algorithms, Dynamic Programming, Graph Theory, and more — each written with clean, readable, and well-commented code in Java.</p>
       <div class="project-tech">
         <span class="tech-pill">Java</span>
