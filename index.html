@@ -9,44 +9,71 @@
 <meta name="robots" content="index, follow">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
 <title>Somnath Nandi — Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cal+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #080810;
-    --surface: #0e0e1a;
-    --surface2: #13131f;
-    --purple: #7c3aed;
-    --purple-bright: #9d60ff;
-    --purple-glow: rgba(124, 58, 237, 0.25);
-    --text: #e8e8f0;
-    --muted: #6b6b88;
-    --accent: #c084fc;
+    /* Light, high-contrast theme for readability */
+    --bg: #fbfbfe;
+    --surface: #ffffff;
+    --surface2: #f4f5fb;
+
+    --text: #1f2330;
+    --muted: #4b5163;
     --white: #ffffff;
+
+    --purple: #6d28d9;
+    --purple-bright: #7c3aed;
+    --accent: #9d4edd;
+
+    --purple-glow: rgba(124, 58, 237, 0.18);
+
+    /* Common system fonts */
+    --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
+
+  /* Use golden ratio to scale the base typography */
+  :root {
+    --phi: 1.61803398875;
+    --base-font: 16px;
+    --fs-body: calc(var(--base-font) * 1.06); /* slightly larger for reading */
+    --fs-sm: calc(var(--base-font) / 2.6);
+    --lh-body: 1.75;
+  }
+
 
   html { scroll-behavior: smooth; }
 
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
 
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: var(--lh-body);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    overflow-x: hidden;
   }
 
 
-  /* Noise overlay */
+
+
+
+  /* Noise overlay (subtle for readability) */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: -1;
-    opacity: 0.35;
+    opacity: 0.08;
   }
 
   /* NAV */
@@ -55,14 +82,15 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.5rem 4rem;
     z-index: 100;
-    background: linear-gradient(to bottom, rgba(8,8,16,0.95), transparent);
+    background: linear-gradient(to bottom, rgba(251,251,254,0.92), rgba(251,251,254,0));
     backdrop-filter: blur(2px);
   }
   .nav-logo {
-    font-family: 'Cal Sans', 'Inter', sans-serif;
+    font-family: var(--font-display);
+
     font-weight: 800;
     font-size: 1.2rem;
-    color: var(--white);
+    color: var(--text);
     letter-spacing: -0.02em;
     text-decoration: none;
   }
@@ -71,8 +99,8 @@
   .nav-links a {
     color: var(--muted);
     text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     transition: color 0.3s;
     position: relative;
@@ -84,7 +112,7 @@
     transform: scaleX(0);
     transition: transform 0.3s;
   }
-  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover { color: var(--text); }
   .nav-links a:hover::after { transform: scaleX(1); }
 
   /* HERO */
@@ -95,6 +123,9 @@
     position: relative;
     overflow: hidden;
   }
+
+  /* Remove dark grid emphasis for light theme */
+  .grid-lines { opacity: 0.85; }
 
   .hero-bg {
     position: absolute; inset: 0;
@@ -116,8 +147,8 @@
 
   .hero-tag {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--purple-bright);
     margin-bottom: 2rem;
@@ -132,13 +163,13 @@
   }
 
   .hero-name {
-    font-family: 'Cal Sans', 'Inter', sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(3.5rem, 8vw, 7rem);
     font-weight: 800;
     line-height: 0.95;
     letter-spacing: -0.03em;
-    color: var(--white);
-    background: linear-gradient(135deg, var(--white), var(--purple-bright));
+    color: var(--text);
+    background: linear-gradient(135deg, var(--text), var(--purple-bright));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -149,9 +180,10 @@
   .hero-name .line2 { color: var(--purple-bright); }
 
   .hero-role {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
+    font-family: var(--font-body);
+
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--muted);
     margin-top: 1rem;
@@ -160,10 +192,11 @@
   }
 
   .hero-desc {
-    font-size: 0.9375rem;
-    line-height: 1.8;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.85;
     color: var(--muted);
-    max-width: 480px;
+    max-width: 520px;
     margin-top: 2rem;
     opacity: 0;
     animation: fadeUp 0.8s 0.6s forwards;
@@ -176,15 +209,17 @@
   }
 
   .btn-primary {
-    padding: 0.9rem 2.2rem;
+    padding: 0.95rem 2.25rem;
     background: var(--purple);
     color: var(--white);
     border: none;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
+    font-family: var(--font-mono);
+
+    font-size: 0.77rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
+
 
     position: relative;
     overflow: hidden;
@@ -203,15 +238,17 @@
   .btn-primary span { position: relative; z-index: 1; }
 
   .btn-ghost {
-    padding: 0.9rem 2.2rem;
+    padding: 0.95rem 2.25rem;
     background: transparent;
     color: var(--text);
-    border: 1px solid rgba(124,58,237,0.3);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
+    border: 1px solid rgba(124,58,237,0.28);
+    font-family: var(--font-mono);
+
+    font-size: 0.77rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
+
 
     transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
@@ -269,6 +306,10 @@
   /* SECTIONS */
   section { padding: 7rem 4rem; position: relative; }
 
+  /* Better readability defaults */
+  p { font-size: 1rem; }
+  a:focus-visible { outline: 2px solid var(--purple-bright); outline-offset: 2px; border-radius: 6px; }
+
   .section-label {
     font-size: 0.65rem;
     letter-spacing: 0.25em;
@@ -285,17 +326,21 @@
   }
 
   .section-title {
-    font-family: 'Cal Sans', 'Inter', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-family: var(--font-display);
+
+    font-size: clamp(2.1rem, 5vw, 3.3rem);
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: var(--white);
+    color: var(--text);
     line-height: 1.05;
     margin-bottom: 1.5rem;
   }
 
   /* ABOUT */
-  #about { border-top: 1px solid rgba(255,255,255,0.04); }
+  #about { border-top: 1px solid rgba(31,35,48,0.08); }
+  #skills { border-top: 1px solid rgba(31,35,48,0.08); }
+  #projects { border-top: 1px solid rgba(31,35,48,0.08); }
+  #contact { border-top: 1px solid rgba(31,35,48,0.08); }
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -304,12 +349,15 @@
     margin-top: 4rem;
   }
   .about-text p {
+    font-family: var(--font-body);
     color: var(--muted);
-    line-height: 1.9;
-    font-size: 0.9375rem;
+
+    line-height: 1.95;
+    font-size: 1.02rem;
     margin-bottom: 1.2rem;
   }
-  .about-text p strong { color: var(--purple-bright); font-weight: 500; }
+  .about-text p strong { color: var(--purple-bright); font-weight: 600; }
+
 
   .about-stats {
     display: grid;
@@ -337,7 +385,8 @@
   .stat-card:hover { border-color: rgba(124,58,237,0.4); transform: translateY(-3px); }
   .stat-card:hover::before { transform: scaleX(1); }
   .stat-num {
-    font-family: 'Cal Sans', 'Inter', sans-serif;
+    font-family: var(--font-display);
+
     font-size: 2.8rem;
     font-weight: 800;
     color: var(--white);
@@ -348,7 +397,7 @@
   .stat-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
   /* SKILLS */
-  #skills { background: var(--surface); border-top: 1px solid rgba(255,255,255,0.04); }
+  #skills { background: var(--surface); border-top: 0; }
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -375,7 +424,8 @@
     box-shadow: 0 0 30px rgba(124,58,237,0.08);
   }
   .skill-cat-name {
-    font-family: 'Cal Sans', 'Inter', sans-serif;
+    font-family: var(--font-display);
+
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--white);
@@ -396,7 +446,7 @@
   .skill-tag:hover { background: rgba(124,58,237,0.2); border-color: var(--accent); color: var(--white); }
 
   /* PROJECTS */
-  #projects { border-top: 1px solid rgba(255,255,255,0.04); }
+  #projects { border-top: 0; }
   .projects-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -429,7 +479,8 @@
   .project-card * { position: relative; z-index: 1; }
 
   .project-num {
-    font-family: 'Cal Sans', 'Inter', sans-serif;
+    font-family: var(--font-display);
+
     font-size: 0.65rem;
     font-weight: 800;
     color: rgba(124,58,237,0.4);
@@ -438,7 +489,8 @@
     margin-bottom: 1.5rem;
   }
   .project-title {
-    font-family: 'Cal Sans', 'Inter', sans-serif;
+    font-family: var(--font-display);
+
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--white);
@@ -447,7 +499,8 @@
   }
   .project-url {
     display: inline-flex; align-items: center; gap: 0.4rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
+
     font-size: 0.68rem;
     color: rgba(157, 96, 255, 0.6);
     text-decoration: none;
@@ -458,7 +511,8 @@
   }
   .project-url:hover { color: var(--purple-bright); }
   .project-url svg { width: 11px; height: 11px; flex-shrink: 0; }
-  .project-desc { font-size: 0.9375rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+  .project-desc { font-family: var(--font-body); font-size: 0.95rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.5rem; }
+
   .project-tech { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem; }
   .tech-pill {
     padding: 0.25rem 0.7rem;
@@ -491,10 +545,11 @@
   }
 
   /* CONTACT */
-  #contact { background: var(--surface); border-top: 1px solid rgba(255,255,255,0.04); }
+  #contact { background: var(--surface); border-top: 0; }
   .contact-inner { max-width: 700px; }
   .contact-lead {
-    font-family: 'Cal Sans', 'Inter', sans-serif;
+    font-family: var(--font-display);
+
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700;
     color: var(--white);
@@ -539,19 +594,21 @@
   .contact-link-icon svg { width: 16px; height: 16px; fill: var(--accent); }
   .contact-link-info { flex: 1; }
   .contact-link-platform { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
-  .contact-link-handle { font-family: 'Cal Sans', 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--white); }
+  .contact-link-handle { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; color: var(--white); }
+
   .contact-link-arrow { color: var(--muted); font-size: 1rem; transition: color 0.3s, transform 0.3s; }
   .contact-link-item:hover .contact-link-arrow { color: var(--accent); transform: translateX(4px); }
 
   /* FOOTER */
   footer {
     padding: 2rem 4rem;
-    border-top: 1px solid rgba(255,255,255,0.04);
+    border-top: 1px solid rgba(31,35,48,0.08);
     display: flex; justify-content: space-between; align-items: center;
   }
   .footer-copy { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
   .footer-sig {
-    font-family: 'Cal Sans', 'Inter', sans-serif;
+    font-family: var(--font-display);
+
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--purple-bright);
@@ -730,9 +787,12 @@
 <section id="projects">
   <div class="section-label">What I've built</div>
   <h2 class="section-title reveal">Featured Projects.</h2>
-  <div class="projects-grid">
+  <div class="projects-grid" id="projectsGrid">
 
-    <div class="project-card reveal">
+    <!-- These data attributes allow JS to fetch commit activity for ranking -->
+
+
+    <div class="project-card reveal" data-repo-owner="nandisomnath" data-repo-name="chrono-zig">
       <div class="project-accent-line"></div>
       <div class="project-num">// 01 — Featured</div>
       <div class="project-title">chrono-zig</div>
@@ -752,7 +812,7 @@
       </a>
     </div>
 
-    <div class="project-card reveal reveal-delay-1">
+    <div class="project-card reveal reveal-delay-1" data-repo-owner="nandisomnath" data-repo-name="zig-pkg-index">
       <div class="project-accent-line"></div>
       <div class="project-num">// 02</div>
       <div class="project-title">zig-pkg-index</div>
@@ -771,7 +831,7 @@
       </a>
     </div>
 
-    <div class="project-card reveal reveal-delay-2">
+    <div class="project-card reveal reveal-delay-2" data-repo-owner="nandisomnath" data-repo-name="book-finder">
       <div class="project-accent-line"></div>
       <div class="project-num">// 03</div>
       <div class="project-title">book-finder</div>
@@ -790,7 +850,7 @@
       </a>
     </div>
 
-    <div class="project-card reveal reveal-delay-3">
+    <div class="project-card reveal reveal-delay-3" data-repo-owner="nandisomnath" data-repo-name="leet_code">
       <div class="project-accent-line"></div>
       <div class="project-num">// 04</div>
       <div class="project-title">LeetCode Solutions</div>
@@ -809,7 +869,7 @@
       </a>
     </div>
 
-    <div class="project-card reveal reveal-delay-1">
+    <div class="project-card reveal reveal-delay-1" data-repo-owner="nandisomnath" data-repo-name="portfolio-template">
       <div class="project-accent-line"></div>
       <div class="project-num">// 05</div>
       <div class="project-title">Resume Template Download Website</div>
@@ -919,7 +979,78 @@
   reveals.forEach(el => obs.observe(el));
 
   // Active nav link highlight
+  const projectsGrid = document.getElementById('projectsGrid');
+  const projectCards = Array.from(projectsGrid?.querySelectorAll('.project-card') ?? []);
+
+  // Rank featured projects by commit activity (approx): number of commits in last 180 days.
+  async function getCommitCountInLastDays(owner, repo, days = 180) {
+    const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+    const isoSince = since.toISOString();
+
+    // Fetch commits newest-first; count until we pass `since`.
+    // We intentionally cap requests to avoid rate-limit issues.
+    let page = 1;
+    let count = 0;
+    const perPage = 100;
+    const maxPages = 5; // 5 * 100 = 500 commits max scanned
+
+    while (page <= maxPages) {
+      const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/commits?per_page=${perPage}&page=${page}&since=${encodeURIComponent(isoSince)}`;
+      const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+      if (!res.ok) return 0;
+      const commits = await res.json();
+      if (!Array.isArray(commits) || commits.length === 0) break;
+
+      count += commits.length;
+
+      // If the oldest commit in this page is older than `since`, we can stop.
+      // (Newest-first, so last element is oldest in the page.)
+      const last = commits[commits.length - 1];
+      const lastDate = last?.commit?.committer?.date ? new Date(last.commit.committer.date) : null;
+      if (lastDate && lastDate < since) break;
+
+      page += 1;
+    }
+
+    return count;
+  }
+
+  async function rankFeaturedProjects() {
+    if (!projectsGrid || projectCards.length === 0) return;
+
+    const scored = [];
+    for (const card of projectCards) {
+      const owner = card.getAttribute('data-repo-owner');
+      const repo = card.getAttribute('data-repo-name');
+      if (!owner || !repo) continue;
+
+      const originalNum = card.querySelector('.project-num');
+      if (originalNum) originalNum.textContent = '// … (checking)';
+
+      const commits = await getCommitCountInLastDays(owner, repo, 180);
+      scored.push({ card, commits });
+    }
+
+    scored.sort((a, b) => b.commits - a.commits);
+
+    // Re-append to reorder (preserves original card markup)
+    for (const { card } of scored) projectsGrid.appendChild(card);
+
+    // Update numbering labels
+    scored.forEach(({ card }, idx) => {
+      const num = card.querySelector('.project-num');
+      if (!num) return;
+      const n = String(idx + 1).padStart(2, '0');
+      const suffix = idx === 0 ? '— Featured' : '';
+      num.textContent = `// ${n}${suffix}`;
+    });
+  }
+
+  // Kick off ranking (non-blocking)
+  rankFeaturedProjects().catch(() => {});
+
   const sections = document.querySelectorAll('section[id]');
+
   const navLinks = document.querySelectorAll('.nav-links a');
   const navObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
