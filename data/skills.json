@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Languages",
+    "skills": ["Go", "Python", "Zig", "Java", "JavaScript", "Shell (Bash)"],
+    "revealDelay": "0.1s"
+  },
+  {
+    "name": "Systems & Tooling",
+    "skills": ["Linux (Arch)", "Neovim", "Git", "Docker", "CLI Tools"],
+    "revealDelay": "0.2s"
+  },
+  {
+    "name": "Concepts",
+    "skills": ["Data Structures", "Algorithms", "Systems Programming", "Open Source"],
+    "revealDelay": "0.1s"
+  },
+  {
+    "name": "Currently Exploring",
+    "skills": ["Rust", "Systems Internals", "Compiler Design", "Automation"],
+    "revealDelay": "0.2s"
+  }
+]

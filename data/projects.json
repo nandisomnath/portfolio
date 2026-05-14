@@ -1,0 +1,72 @@
+[
+  {
+    "id": "chrono-zig",
+    "number": "01",
+    "featured": true,
+    "title": "chrono-zig",
+    "url": "https://github.com/nandisomnath/chrono-zig",
+    "description": "A full-featured date and time library for the Zig programming language — a port of Rust's battle-tested Chrono crate. Supports timezone-aware DateTimes, strftime-inspired formatting, DST handling, and IANA timezone data via a companion package. Listed on Zigistry, the official Zig package registry.",
+    "tags": ["Zig", "Systems", "Open Source", "Date/Time"],
+    "link": "https://github.com/nandisomnath/chrono-zig",
+    "linkText": "View on GitHub",
+    "repoOwner": "nandisomnath",
+    "repoName": "chrono-zig",
+    "revealDelay": "0s"
+  },
+  {
+    "id": "zig-pkg-index",
+    "number": "02",
+    "featured": false,
+    "title": "zig-pkg-index",
+    "url": "https://github.com/nandisomnath/zig-pkg-index",
+    "description": "A clean, beautiful package index web UI for the Zig ecosystem. Helps developers discover, browse, and explore Zig packages in a well-designed interface — filling a gap in the young but fast-growing Zig tooling landscape.",
+    "tags": ["HTML", "Zig Ecosystem", "Open Source"],
+    "link": "https://github.com/nandisomnath/zig-pkg-index",
+    "linkText": "View on GitHub",
+    "repoOwner": "nandisomnath",
+    "repoName": "zig-pkg-index",
+    "revealDelay": "0.1s"
+  },
+  {
+    "id": "book-finder",
+    "number": "03",
+    "featured": false,
+    "title": "book-finder",
+    "url": "https://github.com/nandisomnath/book-finder",
+    "description": "A JavaScript library and tool that searches the internet for books by title, author, or ISBN. A practical utility for readers and developers that wraps various book APIs into a simple, unified interface.",
+    "tags": ["JavaScript", "API Integration", "Open Source"],
+    "link": "https://github.com/nandisomnath/book-finder",
+    "linkText": "View on GitHub",
+    "repoOwner": "nandisomnath",
+    "repoName": "book-finder",
+    "revealDelay": "0.2s"
+  },
+  {
+    "id": "leet_code",
+    "number": "04",
+    "featured": false,
+    "title": "LeetCode Solutions",
+    "url": "https://github.com/nandisomnath/leet_code",
+    "description": "A carefully curated collection of LeetCode problem solutions covering Data Structures, Algorithms, Dynamic Programming, Graph Theory, and more — each written with clean, readable, and well-commented code in Java.",
+    "tags": ["Java", "DSA", "Algorithms"],
+    "link": "https://github.com/nandisomnath/leet_code",
+    "linkText": "View on GitHub",
+    "repoOwner": "nandisomnath",
+    "repoName": "leet_code",
+    "revealDelay": "0.3s"
+  },
+  {
+    "id": "portfolio-template",
+    "number": "05",
+    "featured": false,
+    "title": "Resume Template Download Website",
+    "url": "https://github.com/nandisomnath/portfolio-template",
+    "description": "A full-stack web application for browsing and downloading professional resume templates as PPTX files. Features template previews, categorized listings, and seamless download functionality with a clean, modern interface.",
+    "tags": ["React", "Node.js", "Express", "Vite"],
+    "link": "https://portfolio-template-pink-zeta.vercel.app/",
+    "linkText": "View Live Demo",
+    "repoOwner": "nandisomnath",
+    "repoName": "portfolio-template",
+    "revealDelay": "0.1s"
+  }
+]
