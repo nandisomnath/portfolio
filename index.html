@@ -29,19 +29,19 @@
 
     --purple-glow: rgba(124, 58, 237, 0.18);
 
-    /* Common system fonts */
-    --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-    --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-
-  /* Use golden ratio to scale the base typography */
-  :root {
+    /* Use golden ratio to scale the base typography */
     --phi: 1.61803398875;
     --base-font: 16px;
     --fs-body: calc(var(--base-font) * 1.06); /* slightly larger for reading */
     --fs-sm: calc(var(--base-font) / 2.6);
+
+    /* Typography */
     --lh-body: 1.75;
+
+    /* Common system fonts */
+    --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
 
@@ -208,23 +208,24 @@
     animation: fadeUp 0.8s 0.8s forwards;
   }
 
-  .btn-primary {
+  .btn {
     padding: 0.95rem 2.25rem;
-    background: var(--purple);
-    color: var(--white);
-    border: none;
     font-family: var(--font-mono);
-
     font-size: 0.77rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
 
-
     position: relative;
     overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.3s;
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+
+  .btn-primary {
+    background: var(--purple);
+    color: var(--white);
+    border: none;
+    transition: transform 0.2s, box-shadow 0.3s;
   }
   .btn-primary::before {
     content: '';
@@ -238,20 +239,10 @@
   .btn-primary span { position: relative; z-index: 1; }
 
   .btn-ghost {
-    padding: 0.95rem 2.25rem;
     background: transparent;
     color: var(--white);
     border: 1px solid rgba(124,58,237,0.38);
-    font-family: var(--font-mono);
-
-    font-size: 0.77rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-
-
     transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
-    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
   }
   .btn-ghost:hover { border-color: var(--purple-bright); color: var(--white); box-shadow: inset 0 0 20px rgba(124,58,237,0.1); }
 
@@ -639,11 +630,9 @@
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--reveal-delay, 0s);
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
 
   @media (max-width: 768px) {
     nav { padding: 1.5rem 1.5rem; }
@@ -688,8 +677,8 @@
       I craft elegant, performant software with a focus on clean architecture and meaningful user experiences. Turning complex problems into beautiful, functional solutions.
     </p>
     <div class="hero-actions">
-      <a href="#projects" class="btn-primary"><span>View My Work</span></a>
-      <a href="#contact" class="btn-ghost">Get In Touch</a>
+      <a href="#projects" class="btn btn-primary"><span>View My Work</span></a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
     </div>
   </div>
 
@@ -704,7 +693,7 @@
   <div class="section-label">Who I am</div>
   <h2 class="section-title reveal">Passionate about<br>building great software.</h2>
   <div class="about-grid">
-    <div class="about-text reveal reveal-delay-1">
+    <div class="about-text reveal" style="--reveal-delay: 0.1s;">
       <p>
         I'm a <strong>Linux-first developer</strong> who loves building clean, practical tools that solve real problems. I'm passionate about systems programming, open-source contribution, and writing code that is simple, readable, and maintainable.
       </p>
@@ -715,7 +704,7 @@
         My philosophy: <strong>Simple > Complex. Readable > Clever. Useful > Fancy.</strong> I'm always open to interesting open-source collaborations and new challenges.
       </p>
     </div>
-    <div class="about-stats reveal reveal-delay-2">
+    <div class="about-stats reveal" style="--reveal-delay: 0.2s;">
       <div class="stat-card">
         <div class="stat-num">3<span>+</span></div>
         <div class="stat-label">Years Experience</div>
@@ -741,7 +730,7 @@
   <div class="section-label">What I work with</div>
   <h2 class="section-title reveal">My Tech Stack.</h2>
   <div class="skills-grid">
-    <div class="skill-category reveal reveal-delay-1">
+    <div class="skill-category reveal" style="--reveal-delay: 0.1s;">
       <div class="skill-cat-name">Languages</div>
       <div class="skill-tags">
         <span class="skill-tag">Go</span>
@@ -752,7 +741,7 @@
         <span class="skill-tag">Shell (Bash)</span>
       </div>
     </div>
-    <div class="skill-category reveal reveal-delay-2">
+    <div class="skill-category reveal" style="--reveal-delay: 0.2s;">
       <div class="skill-cat-name">Systems & Tooling</div>
       <div class="skill-tags">
         <span class="skill-tag">Linux (Arch)</span>
@@ -762,7 +751,7 @@
         <span class="skill-tag">CLI Tools</span>
       </div>
     </div>
-    <div class="skill-category reveal reveal-delay-1">
+    <div class="skill-category reveal" style="--reveal-delay: 0.1s;">
       <div class="skill-cat-name">Concepts</div>
       <div class="skill-tags">
         <span class="skill-tag">Data Structures</span>
@@ -771,7 +760,7 @@
         <span class="skill-tag">Open Source</span>
       </div>
     </div>
-    <div class="skill-category reveal reveal-delay-2">
+    <div class="skill-category reveal" style="--reveal-delay: 0.2s;">
       <div class="skill-cat-name">Currently Exploring</div>
       <div class="skill-tags">
         <span class="skill-tag">Rust</span>
@@ -812,7 +801,7 @@
       </a>
     </div>
 
-    <div class="project-card reveal reveal-delay-1" data-repo-owner="nandisomnath" data-repo-name="zig-pkg-index">
+    <div class="project-card reveal" style="--reveal-delay: 0.1s;" data-repo-owner="nandisomnath" data-repo-name="zig-pkg-index">
       <div class="project-accent-line"></div>
       <div class="project-num">// 02</div>
       <div class="project-title">zig-pkg-index</div>
@@ -831,7 +820,7 @@
       </a>
     </div>
 
-    <div class="project-card reveal reveal-delay-2" data-repo-owner="nandisomnath" data-repo-name="book-finder">
+    <div class="project-card reveal" style="--reveal-delay: 0.2s;" data-repo-owner="nandisomnath" data-repo-name="book-finder">
       <div class="project-accent-line"></div>
       <div class="project-num">// 03</div>
       <div class="project-title">book-finder</div>
@@ -850,7 +839,7 @@
       </a>
     </div>
 
-    <div class="project-card reveal reveal-delay-3" data-repo-owner="nandisomnath" data-repo-name="leet_code">
+    <div class="project-card reveal" style="--reveal-delay: 0.3s;" data-repo-owner="nandisomnath" data-repo-name="leet_code">
       <div class="project-accent-line"></div>
       <div class="project-num">// 04</div>
       <div class="project-title">LeetCode Solutions</div>
@@ -869,7 +858,7 @@
       </a>
     </div>
 
-    <div class="project-card reveal reveal-delay-1" data-repo-owner="nandisomnath" data-repo-name="portfolio-template">
+    <div class="project-card reveal" style="--reveal-delay: 0.1s;" data-repo-owner="nandisomnath" data-repo-name="portfolio-template">
       <div class="project-accent-line"></div>
       <div class="project-num">// 05</div>
       <div class="project-title">Resume Template Download Website</div>
@@ -897,7 +886,7 @@
   <div class="contact-inner">
     <div class="section-label">Let's work together</div>
     <h2 class="contact-lead reveal">Got a project in mind?<br><em>Let's talk.</em></h2>
-    <p class="contact-sub reveal reveal-delay-1">
+    <p class="contact-sub reveal" style="--reveal-delay: 0.1s;">
       I'm currently open to freelance work and full-time opportunities. If you have a project that you want to get started, think you need my help with something or just fancy saying hey, then get in touch.
     </p>
 
@@ -914,7 +903,7 @@
         <div class="contact-link-arrow">→</div>
       </a>
 
-      <a href="https://github.com/nandisomnath" target="_blank" class="contact-link-item reveal reveal-delay-1">
+      <a href="https://github.com/nandisomnath" target="_blank" class="contact-link-item reveal" style="--reveal-delay: 0.1s;">
         <div class="contact-link-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         </div>
@@ -925,7 +914,7 @@
         <div class="contact-link-arrow">→</div>
       </a>
 
-      <a href="https://www.linkedin.com/in/somnathnandi/" target="_blank" class="contact-link-item reveal reveal-delay-2">
+      <a href="https://www.linkedin.com/in/somnathnandi/" target="_blank" class="contact-link-item reveal" style="--reveal-delay: 0.2s;">
         <div class="contact-link-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </div>
@@ -936,7 +925,7 @@
         <div class="contact-link-arrow">→</div>
       </a>
 
-      <a href="https://medium.com/@somnathnandi368" target="_blank" class="contact-link-item reveal reveal-delay-3">
+      <a href="https://medium.com/@somnathnandi368" target="_blank" class="contact-link-item reveal" style="--reveal-delay: 0.3s;">
         <div class="contact-link-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
         </div>
@@ -947,7 +936,7 @@
         <div class="contact-link-arrow">→</div>
       </a>
 
-      <a href="https://x.com/Somnath07684365" target="_blank" class="contact-link-item reveal reveal-delay-3">
+      <a href="https://x.com/Somnath07684365" target="_blank" class="contact-link-item reveal" style="--reveal-delay: 0.3s;">
         <div class="contact-link-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </div>
